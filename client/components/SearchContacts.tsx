@@ -27,7 +27,7 @@ const SearchContacts: FC = () => {
     };
 
     return (
-        <div className="field">
+        <div className="field searchField">
             <div className="control has-icons-left">
                 <input
                     className="input is-rounded"

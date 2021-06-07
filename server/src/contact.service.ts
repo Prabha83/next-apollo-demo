@@ -4,7 +4,7 @@ import casual from "casual";
 export function getContacts(): Contact[] {
     const contactList: Contact[] = [];
 
-    for (let index = 1; index <= 20; index++) {
+    for (let index = 1; index <= 2000; index++) {
         const contact: Contact = {
             id: index,
             firstname: casual.first_name,

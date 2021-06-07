@@ -13,7 +13,7 @@ type ContactResponse = {
 
 const ContactsPage: FC = () => {
     const { data, loading, error, fetchMore } = useQuery<ContactResponse, ContactVars>(GET_CONTACTS, {
-        variables: { first: 10, afterCursor: 0 },
+        variables: { first: 20, afterCursor: 0 },
     });
 
     if (loading) {
@@ -28,7 +28,7 @@ const ContactsPage: FC = () => {
         if (pageInfo.hasNextPage) {
             fetchMore({
                 variables: {
-                    first: 10,
+                    first: 20,
                     afterCursor: pageInfo.startCursor,
                 },
             });
@@ -43,12 +43,13 @@ const ContactsPage: FC = () => {
         <Layout>
             <div className="hero-body">
                 <div className="container">
-                    <div className="columns is-vcentered">
-                        <div className="column is-offset-1 landing-caption">
+                    <div className="columns is-centered">
+                        <div className="column is-offset-2 is-centered">
                             <h1 className="title is-1 is-bold is-spaced">Contacts</h1>
                             <SearchContacts />
-                            <div className="subtitle">
-                                Contacts {edges.length} of {totalCount}
+
+                            <div className="subtitle is-7 has-text-right">
+                                shows {edges.length} of {totalCount}
                             </div>
                             <ContactCard contacts={edges} />
                             {pageInfo.hasNextPage && (

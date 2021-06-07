@@ -13,22 +13,52 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                     <p className="title has-text-link">
                         {contact.firstname} {contact.lastname}
                     </p>
-                    <p className="is-6">
-                        <span className="icon-text">
-                            <span className="icon">
-                                <i className="far fa-envelope"></i>
-                            </span>
-                            <span>{contact.email}</span>
-                        </span>
-                    </p>
-                    <p className="is-6">
-                        <span className="icon-text">
-                            <span className="icon">
-                                <i className="fas fa-phone"></i>
-                            </span>
-                            <span>{contact.phonenumber}</span>
-                        </span>
-                    </p>
+                    <div className="columns">
+                        <div className="column">
+                            <p className="is-6">
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="far fa-envelope"></i>
+                                    </span>
+                                    <span>{contact.email}</span>
+                                </span>
+                            </p>
+                            <p className="is-6">
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="fas fa-phone"></i>
+                                    </span>
+                                    <span>{contact.phonenumber}</span>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="column">
+                            <p className="is-6">
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="fas fa-address-card"></i>
+                                    </span>
+                                    <span>{contact.address}</span>
+                                </span>
+                            </p>
+                            <p className="is-6">
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    <span>{contact.city}</span>
+                                </span>
+                            </p>
+                            <p className="is-6">
+                                <span className="icon-text">
+                                    <span className="icon">
+                                        <i className="fas fa-plus"></i>
+                                    </span>
+                                    <span>{contact.postcode}</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         ));
