@@ -4,7 +4,11 @@ import Layout from "../components/Layout";
 const Page = () => {
     return (
         <Layout>
-            <div className="title">Welcome</div>
+            <div className="hero-body">
+                <div className="container">
+                    <div className="title">Welcome</div>
+                </div>
+            </div>
         </Layout>
     );
 };
