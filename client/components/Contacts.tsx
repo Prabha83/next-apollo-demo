@@ -10,7 +10,7 @@ type ContactResponse = {
 
 function Contacts({}) {
     const { data, loading, error, fetchMore } = useQuery<ContactResponse, ContactVars>(GET_CONTACTS, {
-        variables: { first: 10, afterCursor: 1 },
+        variables: { first: 10, afterCursor: 1, searchKey: "" },
     });
 
     if (loading) {
