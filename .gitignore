@@ -1,12 +1,13 @@
 # dependencies
 node_modules/
+dist/
 
 # testing
 /coverage
 
 # next.js
 .next/
-/out/
+out/
 
 # production
 /build
@@ -14,3 +15,4 @@ node_modules/
 # misc
 .DS_Store
 *.pem
+.env

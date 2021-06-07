@@ -1,7 +1,7 @@
 import React from "react";
 import { MockedProvider } from "@apollo/client/testing";
 import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
-import ContactsPage from "./contacts";
+import ContactsPage from "../pages/contacts";
 import GET_CONTACTS from "../lib/queries/getContacts";
 
 const mockContactsData = {

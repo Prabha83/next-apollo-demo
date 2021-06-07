@@ -1,0 +1,18 @@
+# compiled output
+.vscode
+/node_modules
+/cypress
+
+# code formatter
+.eslintrc
+.eslintignore
+.prettierrc
+
+# test
+jest.config.ts
+setupTests.ts
+
+# docker
+Dockerfile
+.dockerignore
+docker-compose.yml

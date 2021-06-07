@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+    next-app:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        container_name: next-app
+        stdin_open: true
+        ports:
+            - "3000:3000"
+        networks:
+            - sapient
+    graphql-server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        container_name: graphql-server
+        ports:
+            - "5000:5000"
+        networks:
+            - sapient
+networks:
+    sapient:
+        driver: bridge

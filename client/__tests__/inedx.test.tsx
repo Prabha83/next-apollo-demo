@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Index from "./index";
+import Index from "../pages/index";
 
 describe("Index page", () => {
     test("loads and displays the index page", async () => {
