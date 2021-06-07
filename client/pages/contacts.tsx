@@ -68,7 +68,7 @@ const ContactsPage: FC = () => {
                                         placeholder="Min 3 chars"
                                     />
                                     <span className="icon is-medium is-right">
-                                        <i className="fas fa-search"></i>
+                                        <i className="fas fa-search is-medium"></i>
                                     </span>
                                 </div>
                                 <div className="control">

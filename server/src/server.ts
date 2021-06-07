@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
-import myGraphQLSchema from "./src/schema";
+import myGraphQLSchema from "./schema";
 import helmet from "helmet";
 
 const app = express();
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(helmet.permittedCrossDomainPolicies());
     app.use(helmet.referrerPolicy());
     app.use(helmet.xssFilter());
-    app.use(cors({ origin: "next-apollo-app.herokuapp.com", optionsSuccessStatus: 200 }));
+    app.use(cors({ origin: "https://next-apollo-app.herokuapp.com", optionsSuccessStatus: 200 }));
 } else {
     app.use(cors());
 }

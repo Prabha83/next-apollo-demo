@@ -18,7 +18,7 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                             <p className="is-6">
                                 <span className="icon-text">
                                     <span className="icon">
-                                        <i className="far fa-envelope"></i>
+                                        <i className="far fa-envelope is-medium"></i>
                                     </span>
                                     <span>{contact.email}</span>
                                 </span>
@@ -26,7 +26,7 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                             <p className="is-6">
                                 <span className="icon-text">
                                     <span className="icon">
-                                        <i className="fas fa-phone"></i>
+                                        <i className="fas fa-phone is-medium"></i>
                                     </span>
                                     <span>{contact.phonenumber}</span>
                                 </span>
@@ -36,7 +36,7 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                             <p className="is-6">
                                 <span className="icon-text">
                                     <span className="icon">
-                                        <i className="fas fa-address-card"></i>
+                                        <i className="fas fa-address-card is-medium"></i>
                                     </span>
                                     <span>{contact.address}</span>
                                 </span>
@@ -44,7 +44,7 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                             <p className="is-6">
                                 <span className="icon-text">
                                     <span className="icon">
-                                        <i className="fas fa-map-marker-alt"></i>
+                                        <i className="fas fa-map-marker-alt is-medium"></i>
                                     </span>
                                     <span>{contact.city}</span>
                                 </span>
@@ -52,7 +52,7 @@ const ContactCard: FC<Props> = ({ contacts }) => {
                             <p className="is-6">
                                 <span className="icon-text">
                                     <span className="icon">
-                                        <i className="fas fa-plus"></i>
+                                        <i className="fas fa-plus is-medium"></i>
                                     </span>
                                     <span>{contact.postcode}</span>
                                 </span>
