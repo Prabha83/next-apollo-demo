@@ -1,6 +1,7 @@
+import { Contact } from "./contact";
 import { getContacts } from "./contact.service";
 
-export default function contactsResolver(first: number, afterCursor: number) {
+export function contactsResolver(first: number, afterCursor: number) {
     let afterIndex: number = 0;
     const contactList = getContacts();
 
@@ -34,5 +35,18 @@ export default function contactsResolver(first: number, afterCursor: number) {
             startCursor,
             hasNextPage,
         },
+    };
+}
+
+export function searchContactsResolver(searchKey: string) {
+    const contactList: Contact[] = getContacts();
+
+    const result = contactList.filter(
+        (x) =>
+            x.firstname.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()) ||
+            x.lastname.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())
+    );
+    return {
+        contacts: result,
     };
 }

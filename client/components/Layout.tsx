@@ -38,16 +38,6 @@ const Layout: FC<Props> = ({ children }) => {
                             <a className="navbar-item">Contacts</a>
                         </Link>
                     </div>
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <div className="control has-icons-left">
-                                <input className="input is-rounded" type="text" placeholder="Search" />
-                                <span className="icon is-medium is-left">
-                                    <i className="fas fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </nav>
             <main className={styles.main}>{children}</main>

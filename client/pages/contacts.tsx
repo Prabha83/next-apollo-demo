@@ -5,6 +5,7 @@ import GET_CONTACTS from "../lib/queries/getContacts";
 import Layout from "../components/Layout";
 import { FC } from "react";
 import ContactCard from "../components/ContactCard";
+import SearchContacts from "../components/SearchContacts";
 
 type ContactResponse = {
     contacts: ContactResult | undefined;
@@ -12,7 +13,7 @@ type ContactResponse = {
 
 const ContactsPage: FC = () => {
     const { data, loading, error, fetchMore } = useQuery<ContactResponse, ContactVars>(GET_CONTACTS, {
-        variables: { first: 10, afterCursor: 1 },
+        variables: { first: 10, afterCursor: 0 },
     });
 
     if (loading) {
@@ -43,9 +44,12 @@ const ContactsPage: FC = () => {
             <div className="hero-body">
                 <div className="container">
                     <div className="columns is-vcentered">
-                        <div className="column is-5 is-offset-1 landing-caption">
+                        <div className="column is-offset-1 landing-caption">
                             <h1 className="title is-1 is-bold is-spaced">Contacts</h1>
-                            <div className="subtitle">Total contacts {totalCount}</div>
+                            <SearchContacts />
+                            <div className="subtitle">
+                                Contacts {edges.length} of {totalCount}
+                            </div>
                             <ContactCard contacts={edges} />
                             {pageInfo.hasNextPage && (
                                 <button className="button is-link" onClick={fetchMoreContacts}>

@@ -1,5 +1,5 @@
 import { GraphQLList, GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLBoolean } from "graphql";
-import contactsResolver from "./contact.resolver";
+import { contactsResolver, searchContactsResolver } from "./contact.resolver";
 
 const contactFields = {
     id: { type: GraphQLInt },
@@ -46,6 +46,13 @@ const ContactResult = new GraphQLObjectType({
     },
 });
 
+const SearchResult = new GraphQLObjectType({
+    name: "SearchResult",
+    fields: {
+        contacts: { type: new GraphQLList(ContactType) },
+    },
+});
+
 const ContactQuery = new GraphQLObjectType({
     name: "Contacts",
     fields: {
@@ -56,6 +63,15 @@ const ContactQuery = new GraphQLObjectType({
                 const { first, afterCursor } = args;
 
                 return contactsResolver(first, afterCursor);
+            },
+        },
+        searchContacts: {
+            type: SearchResult,
+            args: { searchKey: { type: GraphQLString } },
+            resolve: (parent, args) => {
+                const { searchKey } = args;
+
+                return searchContactsResolver(searchKey);
             },
         },
     },

@@ -1,5 +1,5 @@
+import { NodeType } from "./models/Node";
 import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
-import { relayStylePagination } from "@apollo/client/utilities";
 import { useMemo } from "react";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -14,7 +14,24 @@ function createApolloClient() {
             typePolicies: {
                 Query: {
                     fields: {
-                        contacts: relayStylePagination(),
+                        contacts: {
+                            keyArgs: false,
+                            merge(existing, incoming) {
+                                if (!incoming) return existing;
+                                if (!existing) return incoming; // existing will be empty the first time
+
+                                let mergedEdges: NodeType[] = [];
+
+                                if (incoming?.edges) {
+                                    mergedEdges = [...(existing?.edges || []), ...incoming.edges];
+                                }
+
+                                return {
+                                    ...incoming,
+                                    edges: mergedEdges,
+                                };
+                            },
+                        },
                     },
                 },
             },

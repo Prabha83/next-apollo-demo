@@ -6,11 +6,11 @@ import helmet from "helmet";
 
 const app = express();
 
-app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
+    app.use(helmet());
     app.use(helmet.contentSecurityPolicy());
     app.use(helmet.dnsPrefetchControl());
     app.use(helmet.expectCt());
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(helmet.permittedCrossDomainPolicies());
     app.use(helmet.referrerPolicy());
     app.use(helmet.xssFilter());
-    app.use(cors());
+    app.use(cors({ origin: "next-apollo-app.herokuapp.com", optionsSuccessStatus: 200 }));
 } else {
     app.use(cors());
 }
