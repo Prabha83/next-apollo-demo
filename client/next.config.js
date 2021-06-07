@@ -6,6 +6,6 @@ module.exports = {
         includePaths: [path.join(__dirname, "styles")],
     },
     env: {
-        GRAPHQL_URL: "http://localhost:5000/graphql",
+        GRAPHQL_URL: process.env.NEXT_PUBLIC_GRAPHQL_URL,
     },
 };
