@@ -58,11 +58,15 @@ const ContactQuery = new GraphQLObjectType({
     fields: {
         contacts: {
             type: ContactResult,
-            args: { first: { type: GraphQLInt }, afterCursor: { type: GraphQLInt } },
+            args: {
+                first: { type: GraphQLInt },
+                afterCursor: { type: GraphQLInt },
+                searchKey: { type: GraphQLString },
+            },
             resolve: (parent, args) => {
-                const { first, afterCursor } = args;
+                const { first, afterCursor, searchKey } = args;
 
-                return contactsResolver(first, afterCursor);
+                return contactsResolver(first, afterCursor, searchKey);
             },
         },
         searchContacts: {

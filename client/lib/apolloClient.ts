@@ -20,6 +20,8 @@ function createApolloClient() {
                                 if (!incoming) return existing;
                                 if (!existing) return incoming; // existing will be empty the first time
 
+                                if (incoming.totalCount < 2000) return incoming; //for search result
+
                                 let mergedEdges: NodeType[] = [];
 
                                 if (incoming?.edges) {

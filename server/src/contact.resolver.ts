@@ -1,9 +1,17 @@
 import { Contact } from "./contact";
 import { getContacts } from "./contact.service";
 
-export function contactsResolver(first: number, afterCursor: number) {
+export function contactsResolver(first: number, afterCursor: number, searchKey: string) {
     let afterIndex: number = 0;
-    const contactList = getContacts();
+    let contactList = getContacts();
+
+    if (searchKey.length > 0) {
+        contactList = contactList.filter(
+            (x) =>
+                x.firstname.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()) ||
+                x.lastname.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())
+        );
+    }
 
     if (afterCursor) {
         let nodeIndex = contactList.findIndex((da) => da.id === afterCursor);

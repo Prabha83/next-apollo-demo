@@ -1,11 +1,11 @@
+import React, { useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { ContactResult } from "../lib/models/ContactResult";
 import { ContactVars } from "../lib/models/ContactResultVars";
 import GET_CONTACTS from "../lib/queries/getContacts";
 import Layout from "../components/Layout";
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import ContactCard from "../components/ContactCard";
-import SearchContacts from "../components/SearchContacts";
 
 type ContactResponse = {
     contacts: ContactResult | undefined;
@@ -13,8 +13,10 @@ type ContactResponse = {
 
 const ContactsPage: FC = () => {
     const { data, loading, error, fetchMore } = useQuery<ContactResponse, ContactVars>(GET_CONTACTS, {
-        variables: { first: 20, afterCursor: 0 },
+        variables: { first: 20, afterCursor: 0, searchKey: "" },
     });
+
+    const searchInput = useRef<HTMLInputElement>(null);
 
     if (loading) {
         return <h2>Loading...</h2>;
@@ -30,8 +32,16 @@ const ContactsPage: FC = () => {
                 variables: {
                     first: 20,
                     afterCursor: pageInfo.startCursor,
+                    searchKey: searchInput.current?.value,
                 },
-            });
+            }).then((res) => console.log(res));
+        }
+    };
+
+    const handleSearch = () => {
+        if (searchInput.current && searchInput.current.value.length > 2) {
+            fetchMoreContacts();
+            searchInput.current.value = "";
         }
     };
 
@@ -46,7 +56,27 @@ const ContactsPage: FC = () => {
                     <div className="columns is-centered">
                         <div className="column is-offset-2 is-centered">
                             <h1 className="title is-1 is-bold is-spaced">Contacts</h1>
-                            <SearchContacts />
+
+                            <div className="field is-grouped">
+                                <div className="control has-icons-right">
+                                    <input
+                                        className="input is-rounded"
+                                        type="text"
+                                        name="searchInput"
+                                        ref={searchInput}
+                                        autoComplete="off"
+                                        placeholder="Min 3 chars"
+                                    />
+                                    <span className="icon is-medium is-right">
+                                        <i className="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <div className="control">
+                                    <button className="button is-primary" onClick={handleSearch}>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
 
                             <div className="subtitle is-7 has-text-right">
                                 shows {edges.length} of {totalCount}

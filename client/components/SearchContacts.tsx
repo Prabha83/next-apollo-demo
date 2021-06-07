@@ -1,21 +1,23 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
 import React, { ChangeEvent, FC, useState } from "react";
 import { ContactType } from "../lib/models/Contact";
-import SEARCH_CONTACTS from "../lib/queries/searchContacts";
+import GET_CONTACTS from "../lib/queries/getContacts";
 
 type ContactResponse = {
     contacts: ContactType[] | undefined;
 };
 
 type queryVariables = {
+    first: number;
+    afterCursor: number;
     searchKey: String;
 };
 
 const SearchContacts: FC = () => {
     const [searchParam, setSearchParam] = useState("");
 
-    const [getContacts, { data, loading, error }] = useLazyQuery<ContactResponse, queryVariables>(SEARCH_CONTACTS, {
-        variables: { searchKey: searchParam },
+    const [getContacts, { data, loading, error }] = useLazyQuery<ContactResponse, queryVariables>(GET_CONTACTS, {
+        variables: { first: 20, afterCursor: 0, searchKey: searchParam },
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
