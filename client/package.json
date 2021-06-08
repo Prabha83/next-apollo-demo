@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start -p $PORT",
+    "start": "next start -p process.env.PORT",
     "test": "jest",
     "heroku-postbuild": "next build",
     "cypress:open": "cypress open",
